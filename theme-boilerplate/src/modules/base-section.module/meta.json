@@ -1,0 +1,17 @@
+{
+  "label": "Base Section",
+  "description": "Reusable base section module with background, overlay, spacing, content, and button styling",
+  "css_assets": [],
+  "external_js": [],
+  "global": false,
+  "host_template_types": ["PAGE"],
+  "icon": "../../images/module-icons/rectangle-portrait-solid.svg",
+  "js_assets": [],
+  "other_assets": [],
+  "smart_type": "NOT_SMART",
+  "tags": ["base", "section", "foundation"],
+  "is_available_for_new_content": true,
+  "categories": [
+    "body_content"
+  ]
+}

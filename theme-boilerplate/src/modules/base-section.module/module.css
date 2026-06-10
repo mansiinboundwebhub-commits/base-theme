@@ -1,0 +1,72 @@
+/* Base Section Module Styles */
+
+/* Container & Structure */
+.defaultsec {
+  width: 100%;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  width: 100%;
+}
+
+.secinner {
+  width: 100%;
+}
+
+/* Subtitle */
+.sec-subtitle {
+  display: inline-block;
+  font-variant: small-caps;
+}
+
+/* Text Content */
+.sec-text h1,
+.sec-text h2,
+.sec-text h3,
+.sec-text h4,
+.sec-text h5,
+.sec-text h6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.sec-text h1:first-child,
+.sec-text h2:first-child,
+.sec-text h3:first-child,
+.sec-text h4:first-child,
+.sec-text h5:first-child,
+.sec-text h6:first-child {
+  margin-top: 0;
+}
+
+.sec-text ul,
+.sec-text ol {
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+.sec-text li {
+  margin: 0.5rem 0;
+}
+
+.sec-text a {
+  color: #0066CC;
+  text-decoration: underline;
+}
+
+/* Button */
+.sec-button {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.sec-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

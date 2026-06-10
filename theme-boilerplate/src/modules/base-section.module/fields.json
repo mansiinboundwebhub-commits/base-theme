@@ -1,0 +1,327 @@
+[
+  {
+    "label": "Content",
+    "name": "content",
+    "type": "group",
+    "children": [
+      {
+        "label": "Subtitle",
+        "name": "subtitle",
+        "type": "text",
+        "placeholder": "Enter subtitle text"
+      },
+      {
+        "label": "Title",
+        "name": "title",
+        "type": "text",
+        "placeholder": "Enter title text",
+        "default": "Section Title"
+      },
+      {
+        "label": "Text",
+        "name": "text",
+        "type": "richtext",
+        "enabled_features": [
+          "advanced_emphasis",
+          "alignment",
+          "block",
+          "emoji",
+          "font_family",
+          "font_size",
+          "link",
+          "lists",
+          "standard_emphasis"
+        ],
+        "placeholder": "Enter section content",
+        "default": "<p>Add your rich text content here.</p>"
+      }
+    ]
+  },
+  {
+    "label": "Button",
+    "name": "button",
+    "type": "group",
+    "children": [
+      {
+        "label": "Button Text",
+        "name": "text",
+        "type": "text",
+        "placeholder": "Button text",
+        "default": "Learn More"
+      },
+      {
+        "label": "Button Link",
+        "name": "link",
+        "type": "link",
+        "supported_types": [
+          "EXTERNAL",
+          "CONTENT",
+          "FILE",
+          "EMAIL_ADDRESS",
+          "CALL_TO_ACTION"
+        ],
+        "default": {
+          "url": {
+            "href": "#",
+            "type": "EXTERNAL"
+          },
+          "no_follow": false,
+          "open_in_new_tab": false
+        }
+      },
+      {
+        "label": "Button Style",
+        "name": "style",
+        "type": "choice",
+        "id": "button.style",
+        "choices": [
+          ["primary", "Primary"],
+          ["secondary", "Secondary"],
+          ["custom", "Custom"]
+        ],
+        "display": "select",
+        "default": "primary"
+      }
+    ]
+  },
+  {
+    "label": "Custom Button Styling",
+    "name": "custom_button",
+    "type": "group",
+    "visibility": {
+      "controlling_field": "button.style",
+      "controlling_value_regex": "custom",
+      "operator": "EQUAL"
+    },
+    "children": [
+      {
+        "label": "Default State",
+        "name": "default_state",
+        "type": "group",
+        "children": [
+          {
+            "label": "Background Color",
+            "name": "bg_color",
+            "type": "color",
+            "default": {
+              "color": "#0066CC",
+              "opacity": 100
+            }
+          },
+          {
+            "label": "Border Color",
+            "name": "border_color",
+            "type": "color",
+            "default": {
+              "color": "#0066CC",
+              "opacity": 100
+            }
+          },
+          {
+            "label": "Text Color",
+            "name": "text_color",
+            "type": "color",
+            "default": {
+              "color": "#FFFFFF",
+              "opacity": 100
+            }
+          }
+        ]
+      },
+      {
+        "label": "Hover State",
+        "name": "hover_state",
+        "type": "group",
+        "children": [
+          {
+            "label": "Hover Background Color",
+            "name": "hover_bg_color",
+            "type": "color",
+            "default": {
+              "color": "#0052A3",
+              "opacity": 100
+            }
+          },
+          {
+            "label": "Hover Border Color",
+            "name": "hover_border_color",
+            "type": "color",
+            "default": {
+              "color": "#0052A3",
+              "opacity": 100
+            }
+          },
+          {
+            "label": "Hover Text Color",
+            "name": "hover_text_color",
+            "type": "color",
+            "default": {
+              "color": "#FFFFFF",
+              "opacity": 100
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "Background",
+    "name": "background",
+    "type": "group",
+    "tab": "STYLE",
+    "children": [
+      {
+        "label": "Background Type",
+        "name": "type",
+        "id": "background.type",
+        "type": "choice",
+        "choices": [
+          ["color", "Color"],
+          ["image", "Image"],
+          ["gradient", "Gradient"]
+        ],
+        "display": "radio",
+        "default": "color"
+      },
+      {
+        "label": "Background Color",
+        "name": "color",
+        "type": "color",
+        "visibility": {
+          "controlling_field": "background.type",
+          "controlling_value_regex": "color",
+          "operator": "EQUAL"
+        },
+        "default": {
+          "color": "#FFFFFF",
+          "opacity": 100
+        }
+      },
+      {
+        "label": "Background Image",
+        "name": "image",
+        "type": "backgroundimage",
+        "visibility": {
+          "controlling_field": "background.type",
+          "controlling_value_regex": "image",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "label": "Gradient Type",
+        "name": "gradient_type",
+        "id": "background.gradient_type",
+        "type": "choice",
+        "choices": [
+          ["linear", "Linear"],
+          ["radial", "Radial"]
+        ],
+        "display": "select",
+        "visibility": {
+          "controlling_field": "background.type",
+          "controlling_value_regex": "gradient",
+          "operator": "EQUAL"
+        },
+        "default": "linear"
+      },
+      {
+        "label": "Gradient Direction",
+        "name": "gradient_direction",
+        "type": "choice",
+        "choices": [
+          ["to right", "Left to Right"],
+          ["to bottom", "Top to Bottom"],
+          ["135deg", "Diagonal (↘)"],
+          ["45deg", "Diagonal (↗)"]
+        ],
+        "display": "select",
+        "visibility": {
+          "controlling_field": "background.type",
+          "controlling_value_regex": "gradient",
+          "operator": "EQUAL"
+        },
+        "default": "to right"
+      },
+      {
+        "label": "Gradient Color 1",
+        "name": "gradient_color_1",
+        "type": "color",
+        "visibility": {
+          "controlling_field": "background.type",
+          "controlling_value_regex": "gradient",
+          "operator": "EQUAL"
+        },
+        "default": {
+          "color": "#0066CC",
+          "opacity": 100
+        }
+      },
+      {
+        "label": "Gradient Color 2",
+        "name": "gradient_color_2",
+        "type": "color",
+        "visibility": {
+          "controlling_field": "background.type",
+          "controlling_value_regex": "gradient",
+          "operator": "EQUAL"
+        },
+        "default": {
+          "color": "#00D4FF",
+          "opacity": 100
+        }
+      }
+    ]
+  },
+  {
+    "label": "Overlay",
+    "name": "overlay",
+    "type": "group",
+    "tab": "STYLE",
+    "children": [
+      {
+        "label": "Enable Overlay",
+        "name": "enabled",
+        "type": "boolean",
+        "display": "toggle",
+        "default": false
+      },
+      {
+        "label": "Overlay Color",
+        "name": "color",
+        "type": "color",
+        "visibility": {
+          "controlling_field": "overlay.enabled",
+          "controlling_value_regex": "true",
+          "operator": "EQUAL"
+        },
+        "default": {
+          "color": "#000000",
+          "opacity": 50
+        }
+      }
+    ]
+  },
+  {
+    "label": "Spacing",
+    "name": "spacing",
+    "type": "group",
+    "tab": "STYLE",
+    "children": [
+      {
+        "label": "Desktop",
+        "name": "desktop",
+        "type": "spacing"
+      },
+      {
+        "label": "Tablet",
+        "name": "tablet",
+        "type": "spacing"
+      },
+      {
+        "label": "Mobile",
+        "name": "mobile",
+        "type": "spacing"
+      }
+    ]
+  }
+]

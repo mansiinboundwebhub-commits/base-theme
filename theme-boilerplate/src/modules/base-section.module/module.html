@@ -1,0 +1,194 @@
+{# Base Section Module #}
+
+{% require_css %}
+  <style>
+    {% scope_css %}
+
+      .defaultsec {
+        position: relative;
+        {{ module.spacing.desktop.spacing.css }}
+
+        {% if module.background.type == "color" and module.background.color.color %}
+          background-color: rgba({{ module.background.color.color|convert_rgb }}, {{ module.background.color.opacity / 100 }});
+        {% elif module.background.type == "image" %}
+          {{ module.background.image.css }}
+        {% elif module.background.type == "gradient" %}
+          {% if module.background.gradient_type == "linear" %}
+            background: linear-gradient({{ module.background.gradient_direction }}, rgba({{ module.background.gradient_color_1.color|convert_rgb }}, {{ module.background.gradient_color_1.opacity / 100 }}), rgba({{ module.background.gradient_color_2.color|convert_rgb }}, {{ module.background.gradient_color_2.opacity / 100 }}));
+          {% elif module.background.gradient_type == "radial" %}
+            background: radial-gradient(circle, rgba({{ module.background.gradient_color_1.color|convert_rgb }}, {{ module.background.gradient_color_1.opacity / 100 }}), rgba({{ module.background.gradient_color_2.color|convert_rgb }}, {{ module.background.gradient_color_2.opacity / 100 }}));
+          {% endif %}
+        {% endif %}
+      }
+
+      {% if module.overlay.enabled %}
+        .defaultsec::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background-color: rgba({{ module.overlay.color.color|convert_rgb }}, {{ module.overlay.color.opacity / 100 }});
+          pointer-events: none;
+        }
+      {% endif %}
+
+      .container {
+        position: relative;
+        z-index: 1;
+      }
+
+      .secinner {
+        max-width: 100%;
+      }
+
+      {% if module.content.subtitle %}
+        .sec-subtitle {
+          margin: 0 0 0.5rem 0;
+          font-size: 0.875rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          opacity: 0.8;
+        }
+      {% endif %}
+
+      {% if module.content.title %}
+        .sec-title {
+          margin: 0 0 1.5rem 0;
+          font-size: 2.5rem;
+          font-weight: 700;
+          line-height: 1.2;
+        }
+      {% endif %}
+
+      .sec-text {
+        margin: 0 0 2rem 0;
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      .sec-text p {
+        margin: 1rem 0;
+      }
+
+      .sec-text p:first-child {
+        margin-top: 0;
+      }
+
+      .sec-text p:last-child {
+        margin-bottom: 0;
+      }
+
+      .sec-button {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        border-radius: 4px;
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+      }
+
+      .sec-button.primary {
+        background-color: #0066CC;
+        color: #FFFFFF;
+        border-color: #0066CC;
+      }
+
+      .sec-button.primary:hover {
+        background-color: #0052A3;
+        border-color: #0052A3;
+      }
+
+      .sec-button.secondary {
+        background-color: transparent;
+        color: #0066CC;
+        border-color: #0066CC;
+      }
+
+      .sec-button.secondary:hover {
+        background-color: #0066CC;
+        color: #FFFFFF;
+      }
+
+      {% if module.button.style == "custom" %}
+        .sec-button.custom {
+          background-color: rgba({{ module.custom_button.default_state.bg_color.color|convert_rgb }}, {{ module.custom_button.default_state.bg_color.opacity / 100 }});
+          color: rgba({{ module.custom_button.default_state.text_color.color|convert_rgb }}, {{ module.custom_button.default_state.text_color.opacity / 100 }});
+          border-color: rgba({{ module.custom_button.default_state.border_color.color|convert_rgb }}, {{ module.custom_button.default_state.border_color.opacity / 100 }});
+        }
+
+        .sec-button.custom:hover {
+          background-color: rgba({{ module.custom_button.hover_state.hover_bg_color.color|convert_rgb }}, {{ module.custom_button.hover_state.hover_bg_color.opacity / 100 }});
+          color: rgba({{ module.custom_button.hover_state.hover_text_color.color|convert_rgb }}, {{ module.custom_button.hover_state.hover_text_color.opacity / 100 }});
+          border-color: rgba({{ module.custom_button.hover_state.hover_border_color.color|convert_rgb }}, {{ module.custom_button.hover_state.hover_border_color.opacity / 100 }});
+        }
+      {% endif %}
+
+      {# Responsive Typography & Breakpoints #}
+      @media (max-width: 991px) {
+        .defaultsec {
+          {{ module.spacing.tablet.spacing.css }}
+        }
+
+        .sec-title {
+          font-size: 2rem;
+        }
+      }
+
+      {# Mobile Responsive #}
+      @media (max-width: 767px) {
+        .defaultsec {
+          {{ module.spacing.mobile.spacing.css }}
+        }
+
+        .sec-title {
+          font-size: 1.5rem;
+        }
+
+        .sec-text {
+          font-size: 0.95rem;
+        }
+
+        .sec-button {
+          display: block;
+          text-align: center;
+          width: 100%;
+        }
+      }
+
+    {% end_scope_css %}
+  </style>
+{% end_require_css %}
+
+<div class="defaultsec secbg secspace">
+  <div class="container">
+    <div class="secinner">
+
+      {% if module.content.subtitle %}
+        <p class="sec-subtitle">
+          {{ module.content.subtitle|escape_url }}
+        </p>
+      {% endif %}
+
+      {% if module.content.title %}
+        <h2 class="sec-title">
+          {{ module.content.title|escape_url }}
+        </h2>
+      {% endif %}
+
+      {% if module.content.text %}
+        <div class="sec-text">
+          {{ module.content.text|sanitize_html }}
+        </div>
+      {% endif %}
+
+      {% if module.button.text and module.button.link.url.href %}
+        <a href="{{ module.button.link.url.href|escape_url }}" class="sec-button {{ module.button.style }}" {% if module.button.link.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %} {% if module.button.link.no_follow %}rel="nofollow"{% endif %}>
+          {{ module.button.text|escape_url }}
+        </a>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
